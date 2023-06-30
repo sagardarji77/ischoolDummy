@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 import { SchoolsRoutingModule } from './schools-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, FilterComponent],
   imports: [
     CommonModule,
     SchoolsRoutingModule,

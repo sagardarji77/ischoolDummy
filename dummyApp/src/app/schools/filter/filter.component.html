@@ -1,0 +1,97 @@
+<div class="accordion-wrapper">
+  <div class="accordion accordion-flush" id="{{ data.title }}-accordian">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="{{ data.title }}-heading">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          attr.data-bs-target="#{{ data.title }}-collapse"
+          aria-expanded="false"
+          attr.aria-controls="{{ data.title }}-collapse"
+        >
+          <div class="title">{{ data.title }}</div>
+        </button>
+      </h2>
+
+      <div
+        id="{{ data.title }}-collapse"
+        class="accordion-collapse collapse show"
+        attr.aria-labelledby="{{ data.title }}-heading"
+        attr.data-bs-parent="#{{ data.title }}-accordian"
+      >
+        <div class="accordion-body">
+          <ng-container *ngFor="let filter of data.list">
+            <div
+              class="accordion accordion-flush"
+              id="{{ filter.country }}-accordian"
+            >
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="{{ filter.country }}-heading">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    attr.data-bs-target="#{{ filter.country }}-collapse"
+                    aria-expanded="false"
+                    attr.aria-controls="{{ filter.country }}-collapse"
+                  >
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="parent-checkbox"
+                      />
+                      <label class="form-check-label" for="parent-checkbox">
+                        {{ filter.country }}
+                      </label>
+                    </div>
+                  </button>
+                </h2>
+
+                <div
+                  id="{{ filter.country }}-collapse"
+                  class="accordion-collapse collapse"
+                  attr.aria-labelledby="{{ filter.country }}-heading"
+                  attr.data-bs-parent="#{{ filter.country }}-accordian"
+                >
+                  <div class="accordion-body">
+                    <form
+                      [formGroup]="filterSearchForm"
+                      class="filter-search-bar"
+                    >
+                      <div
+                        class="input-group"
+                        class="filter-search-input-wrapper"
+                      >
+                        <input
+                          type="text"
+                          class="form-control filter-search-input"
+                          placeholder="Search"
+                          aria-label="filterSearch"
+                          formControlName="filterSearch"
+                        />
+                      </div>
+                    </form>
+                    <ng-container *ngFor="let state of filter.states">
+                      <div class="form-check form-check-input-wrapper">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="child-check-box"
+                        />
+                        <label class="form-check-label" for="child-check-box">
+                          {{ state }}
+                        </label>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
