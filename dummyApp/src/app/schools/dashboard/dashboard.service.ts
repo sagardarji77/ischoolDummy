@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 const dummyData = {
   message: 'Successfully fetched the search results.',
@@ -963,13 +963,42 @@ const dummyData = {
   status_code: 200,
 };
 
+const dummyFilterCountry = {
+  title: 'country',
+  list: [
+    { parent: 'Australia', child: ['state1', 'state2', 'state3'] },
+    { parent: 'India', child: ['state1', 'state2', 'state3'] },
+    { parent: 'USA', child: ['state1', 'state2'] },
+    { parent: 'Canada', child: ['state1', 'state2', 'state3'] },
+    { parent: 'China', child: ['state1', 'state2', 'state3'] },
+    { parent: 'Japan', child: ['state1', 'state2'] },
+  ],
+};
+
+const dummyFilterDegree = {
+  title: 'Degrees',
+  list: [
+    { parent: 'Agriculture' },
+    { parent: 'Anthropology and Archaeology' },
+    { parent: 'Architecture' },
+    { parent: 'Arts' },
+    { parent: 'Biology' },
+    { parent: 'Design' },
+  ],
+};
+
+const dummyFilterData = [dummyFilterCountry, dummyFilterDegree];
+
 @Injectable({
   providedIn: 'root',
 })
 export class DashboardService {
   constructor() {}
 
-  getSchools() {
+  getSchools(): Observable<any> {
     return of(dummyData);
+  }
+  getFilters(): Observable<any> {
+    return of(dummyFilterData);
   }
 }

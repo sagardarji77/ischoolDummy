@@ -1,32 +1,38 @@
-<div class="dashboard-container">
-  <div class="search-container">
-    <div class="search-navigator">
-      <img
-        class="home-icon"
-        src="../../../assets/house-solid.svg"
-        height=".625rem"
-      />
-      <span> &gt; </span><span>Explore Schools</span>
-    </div>
-    <form [formGroup]="searchForm" class="search-bar">
-      <div class="input-group">
-        <input
-          type="text"
-          class="form-control search-input"
-          placeholder="Search for an institute or a course"
-          aria-label="search"
-          formControlName="search"
+<div class="dashboard">
+  <div class="dashboard-container">
+    <div class="search-container">
+      <div class="search-navigator">
+        <img
+          class="home-icon"
+          src="../../../assets/house-solid.svg"
+          height=".625rem"
         />
-        <span class="input-group-text search-button">@</span>
+        <span> &gt; </span><span>Explore Schools</span>
       </div>
-    </form>
-    <div class="search-count">
-      You found <span>{{ colleges.data.total }}</span> institutes and
-      <span>{{ colleges.data.total_courses_count }}</span> courses
+      <form [formGroup]="searchForm" class="search-bar">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control search-input"
+            placeholder="Search for an institute or a course"
+            aria-label="search"
+            formControlName="search"
+          />
+          <span class="input-group-text search-button">@</span>
+        </div>
+      </form>
+      <div class="search-count">
+        You found <span>{{ colleges.data.total }}</span> institutes and
+        <span>{{ colleges.data.total_courses_count }}</span> courses
+      </div>
     </div>
-  </div>
-  <div class="schools-container">
-    <div class="filter-container"><app-filter></app-filter></div>
-    <div class="schools-list-container">list</div>
+    <div class="schools-container">
+      <div class="filter-container">
+        <ng-container *ngFor="let item of filters">
+          <app-filter [data]="item"></app-filter>
+        </ng-container>
+      </div>
+      <div class="schools-list-container">list</div>
+    </div>
   </div>
 </div>

@@ -20,12 +20,14 @@ export interface IShools {
 export class DashboardComponent implements OnInit {
   searchForm!: FormGroup;
   colleges!: IShools;
+  filters!: any[];
 
   constructor(private dashboardService: DashboardService) {}
 
   ngOnInit(): void {
     this.initializeForm();
     this.getSchools();
+    this.getFilters();
   }
 
   initializeForm() {
@@ -40,6 +42,17 @@ export class DashboardComponent implements OnInit {
         this.colleges = data;
         console.log(data);
         console.log(this.colleges);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  getFilters() {
+    this.dashboardService.getFilters().subscribe(
+      (data) => {
+        this.filters = data;
       },
       (err) => {
         console.log(err);

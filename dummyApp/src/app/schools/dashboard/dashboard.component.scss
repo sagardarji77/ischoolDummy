@@ -1,4 +1,4 @@
-.dashboard-container {
+.dashboard {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -6,10 +6,13 @@
   padding: 1rem;
   font-family: "Times New Roman", Times, serif;
 
-  .search-container {
+  .dashboard-container {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+  }
+
+  .search-container {
     .search-navigator {
       font-size: 0.8125rem;
       .home-icon {
@@ -46,32 +49,32 @@
 }
 
 @media screen and (max-width: 30rem) {
-  .dashboard-container {
-    .search-container {
+  .dashboard {
+    .dashboard-container {
       max-width: 28.125rem;
     }
   }
 }
 
 @media screen and (min-width: 30.0625rem) {
-  .dashboard-container {
-    .search-container {
+  .dashboard {
+    .dashboard-container {
       max-width: 20.625rem;
     }
   }
 }
 
 @media screen and (min-width: 48rem) {
-  .dashboard-container {
-    .search-container {
+  .dashboard {
+    .dashboard-container {
       max-width: 990px;
     }
   }
 }
 
 @media screen and (min-width: 75rem) {
-  .dashboard-container {
-    .search-container {
+  .dashboard {
+    .dashboard-container {
       min-width: 64rem;
     }
   }

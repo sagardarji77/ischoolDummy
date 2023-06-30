@@ -1,5 +1,5 @@
 .accordion-wrapper {
-  height: 14.625rem;
+  max-height: 14.625rem;
   overflow-y: scroll;
   margin-top: 0.625rem;
 }
@@ -10,6 +10,7 @@
 button.accordion-button {
   margin: 0;
   padding: 0.3125rem 1.25rem;
+  box-shadow: none;
 }
 .accordion-body {
   padding: 0;
@@ -32,9 +33,14 @@ button.accordion-button {
   box-shadow: none;
   outline: none;
 }
-
+.simple-checkbox {
+  padding: 0.3125rem 2.75rem;
+}
 .accordion-item,
 .accordion-button,
 .accordion-body {
   background-color: transparent;
+}
+hr {
+  margin-top: 10px 0 0;
 }

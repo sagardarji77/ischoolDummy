@@ -1,97 +1,130 @@
-<div class="accordion-wrapper">
-  <div class="accordion accordion-flush" id="{{ data.title }}-accordian">
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="{{ data.title }}-heading">
-        <button
-          class="accordion-button collapsed"
-          type="button"
-          data-bs-toggle="collapse"
-          attr.data-bs-target="#{{ data.title }}-collapse"
-          aria-expanded="false"
-          attr.aria-controls="{{ data.title }}-collapse"
+<ng-container *ngIf="data">
+  <div class="accordion-wrapper">
+    <div class="accordion accordion-flush" id="{{ data.title }}-accordian">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="{{ data.title }}-heading">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            attr.data-bs-target="#{{ data.title }}-collapse"
+            aria-expanded="true"
+            attr.aria-controls="{{ data.title }}-collapse"
+          >
+            <div class="title">{{ data.title }}</div>
+          </button>
+        </h2>
+
+        <div
+          id="{{ data.title }}-collapse"
+          class="accordion-collapse collapse show"
+          attr.aria-labelledby="{{ data.title }}-heading"
+          attr.data-bs-parent="#{{ data.title }}-accordian"
         >
-          <div class="title">{{ data.title }}</div>
-        </button>
-      </h2>
-
-      <div
-        id="{{ data.title }}-collapse"
-        class="accordion-collapse collapse show"
-        attr.aria-labelledby="{{ data.title }}-heading"
-        attr.data-bs-parent="#{{ data.title }}-accordian"
-      >
-        <div class="accordion-body">
-          <ng-container *ngFor="let filter of data.list">
-            <div
-              class="accordion accordion-flush"
-              id="{{ filter.country }}-accordian"
-            >
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="{{ filter.country }}-heading">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    attr.data-bs-target="#{{ filter.country }}-collapse"
-                    aria-expanded="false"
-                    attr.aria-controls="{{ filter.country }}-collapse"
+          <div class="accordion-body">
+            <ng-container *ngFor="let filter of data.list; let i = index">
+              <div
+                class="accordion accordion-flush"
+                id="{{ filter.parent }}-accordian{{ i }}"
+                *ngIf="
+                  filter.child && filter.child.length != 0;
+                  else simpleCheckBox
+                "
+              >
+                <div class="accordion-item">
+                  <h2
+                    class="accordion-header"
+                    id="{{ filter.parent }}-heading{{ i }}"
                   >
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="parent-checkbox"
-                      />
-                      <label class="form-check-label" for="parent-checkbox">
-                        {{ filter.country }}
-                      </label>
-                    </div>
-                  </button>
-                </h2>
-
-                <div
-                  id="{{ filter.country }}-collapse"
-                  class="accordion-collapse collapse"
-                  attr.aria-labelledby="{{ filter.country }}-heading"
-                  attr.data-bs-parent="#{{ filter.country }}-accordian"
-                >
-                  <div class="accordion-body">
-                    <form
-                      [formGroup]="filterSearchForm"
-                      class="filter-search-bar"
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      attr.data-bs-target="#{{ filter.parent }}-collapse{{ i }}"
+                      aria-expanded="false"
+                      attr.aria-controls="{{ filter.parent }}-collapse{{ i }}"
                     >
-                      <div
-                        class="input-group"
-                        class="filter-search-input-wrapper"
-                      >
-                        <input
-                          type="text"
-                          class="form-control filter-search-input"
-                          placeholder="Search"
-                          aria-label="filterSearch"
-                          formControlName="filterSearch"
-                        />
-                      </div>
-                    </form>
-                    <ng-container *ngFor="let state of filter.states">
-                      <div class="form-check form-check-input-wrapper">
+                      <div class="form-check">
                         <input
                           class="form-check-input"
                           type="checkbox"
-                          id="child-check-box"
+                          id="{{ filter.parent }}-simple-checkbox{{ i }}"
                         />
-                        <label class="form-check-label" for="child-check-box">
-                          {{ state }}
+                        <label
+                          class="form-check-label"
+                          for="{{ filter.parent }}-simple-checkbox{{ i }}"
+                        >
+                          {{ filter.parent }}
                         </label>
                       </div>
-                    </ng-container>
+                    </button>
+                  </h2>
+
+                  <div
+                    id="{{ filter.parent }}-collapse{{ i }}"
+                    class="accordion-collapse collapse"
+                    attr.aria-labelledby="{{ filter.parent }}-heading{{ i }}"
+                    attr.data-bs-parent="#{{ filter.parent }}-accordian{{ i }}"
+                  >
+                    <div class="accordion-body">
+                      <form
+                        [formGroup]="filterSearchForm"
+                        class="filter-search-bar"
+                      >
+                        <div
+                          class="input-group"
+                          class="filter-search-input-wrapper"
+                        >
+                          <input
+                            type="text"
+                            class="form-control filter-search-input"
+                            placeholder="Search"
+                            aria-label="filterSearch"
+                            formControlName="filterSearch"
+                          />
+                        </div>
+                      </form>
+                      <ng-container
+                        *ngFor="let childVal of filter.child; let j = index"
+                      >
+                        <div class="form-check form-check-input-wrapper">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="{{ childVal }}-simple-checkbox{{ i }}{{ j }}"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="{{ childVal }}-simple-checkbox{{ i }}{{ j }}"
+                          >
+                            {{ childVal }}
+                          </label>
+                        </div>
+                      </ng-container>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </ng-container>
+              <ng-template #simpleCheckBox>
+                <div class="form-check simple-checkbox" #simpleCheckBox>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="{{ filter.parent }}-simple-checkbox{{ i }}"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="{{ filter.parent }}-simple-checkbox{{ i }}"
+                  >
+                    {{ filter.parent }}
+                  </label>
+                </div>
+              </ng-template>
+            </ng-container>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  <hr />
+</ng-container>
