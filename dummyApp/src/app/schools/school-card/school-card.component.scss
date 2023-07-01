@@ -1,0 +1,139 @@
+.school-card-container {
+  background: #fff;
+  box-shadow: 0 0 16px #cccccc4d;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  cursor: pointer;
+  margin: 1rem 0 1rem 1rem;
+
+  .primary-icon {
+    height: 1.25rem;
+    width: 1.25rem;
+    margin-right: 0.75rem;
+  }
+  .top-section {
+    display: flex;
+    flex-direction: row;
+    .school-logo {
+      width: 5rem;
+      .school-logo-img {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+    .school-info {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .school-name,
+      .school-address {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5625rem;
+      }
+      .handshake-icon {
+        width: 1.5625rem;
+        height: 1.5625rem;
+        margin-left: 0.75rem;
+      }
+      .location-icon {
+        width: 1rem;
+        height: 1rem;
+        margin-right: 0.375rem;
+      }
+      .disc-icon {
+        width: 0.625rem;
+        height: 0.625rem;
+        margin: 0 0.375rem;
+      }
+      .school-profile-wrapper {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 1rem;
+        .school-profile {
+          flex: 1;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          .badge-icon {
+            width: 1.125rem;
+            height: 1.125rem;
+            margin-right: 0.75rem;
+          }
+        }
+      }
+    }
+  }
+  .bottom-section {
+    .course-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      background: #f9f9f9;
+      border: 1px solid #e5e5e5;
+      box-sizing: border-box;
+      border-radius: 4px;
+      padding: 0.5rem 1rem 0.75rem;
+      margin: 0 0.25rem 1rem;
+      cursor: pointer;
+
+      .course-details {
+        display: flex;
+        flex-direction: column;
+        .course-title {
+          margin-bottom: 0.5rem;
+        }
+        .course-school {
+          display: flex;
+          align-items: center;
+          margin-bottom: 0.25rem;
+        }
+        .course-attributes {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          .course-attributes-title {
+            margin-right: 1rem;
+          }
+          .fees-icon,
+          .calender-icon {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.75rem;
+          }
+        }
+      }
+      .course-action {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .Add-to-favorits-btn {
+          color: #706f6f;
+          border: 1px solid rgba(0, 0, 0, 0.12);
+          margin-right: 10px;
+          text-decoration: none;
+          font-size: 0.8rem;
+          font-weight: 600;
+          line-height: 35px;
+          border-radius: 5px;
+          width: 170px;
+          text-align: center;
+          position: relative;
+        }
+        .apply-btn {
+          text-align: center;
+          padding: 8px 20px;
+          border-radius: 6px;
+          border: 1px solid currentColor;
+          background-color: #00aff0;
+          color: #fff;
+          text-decoration: none;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}

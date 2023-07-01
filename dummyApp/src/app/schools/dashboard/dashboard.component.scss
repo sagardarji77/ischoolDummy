@@ -42,8 +42,12 @@
 
   .schools-container {
     display: flex;
+
     .filter-container {
       width: 15.625rem;
+    }
+    .schools-list-container {
+      width: 100%;
     }
   }
 }
