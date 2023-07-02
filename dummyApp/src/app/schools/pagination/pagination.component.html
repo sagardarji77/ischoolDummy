@@ -1,7 +1,17 @@
-<div class="pagination">
-  <span class="pageItem">&lt;</span>
+<div class="pagination" (click)="getCurrentPage($event)">
+  <span
+    class="page-item"
+    [ngClass]="{ 'hide-Page': currentPage == 1 }"
+    value="lt"
+    >&lt;</span
+  >
   <ng-container *ngFor="let item of pageArray">
-    <span class="pageItem">{{ item }}</span>
+    <span class="page-item" [attr.value]="item">{{ item }}</span>
   </ng-container>
-  <span class="pageItem">&gt;</span>
+  <span
+    class="page-item"
+    [ngClass]="{ 'hide-Page': currentPage == noOfPage }"
+    value="gt"
+    >&gt;</span
+  >
 </div>
