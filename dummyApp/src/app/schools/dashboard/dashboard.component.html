@@ -33,7 +33,10 @@
         </ng-container>
       </div>
       <div class="schools-list-container">
-        <app-school-card></app-school-card>
+        <ng-container *ngFor="let item of colleges.data.results">
+          <app-school-card [schools]="item"></app-school-card>
+        </ng-container>
+        <app-pagination></app-pagination>
       </div>
     </div>
   </div>

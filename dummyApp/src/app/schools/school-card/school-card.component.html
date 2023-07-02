@@ -9,7 +9,8 @@
     </div>
     <div class="school-info">
       <div class="school-name">
-        University of Connecticut - Storrs<img
+        <span>{{ schools.name }}</span>
+        <img
           class="handshake-icon icon"
           src="../../../assets/handshake-solid.svg"
           alt="img"
@@ -20,12 +21,12 @@
           src="../../../assets/location-dot-solid.svg"
           class="location-icon"
           alt="img"
-        /><span>Storrs, Connecticut</span
+        /><span>{{ schools.address.city }}, {{ schools.address.state }}</span
         ><img
           src="../../../assets/circle-solid.svg"
           class="disc-icon"
           alt="img"
-        /><span>United States of America</span>
+        /><span>{{ schools.address.country }}</span>
       </div>
       <div class="school-profile-wrapper">
         <div class="school-profile">
@@ -37,7 +38,21 @@
             />
           </div>
           <div class="school-profile-text">
-            <div>201</div>
+            <div>
+              {{
+                schools.rank.isc_global.min &&
+                schools.rank.isc_global.max &&
+                schools.rank.isc_global.min != schools.rank.isc_global.max
+                  ? schools.rank.isc_global.min +
+                    " - " +
+                    schools.rank.isc_global.max
+                  : schools.rank.isc_global.max
+                  ? schools.rank.isc_global.max
+                  : schools.rank.isc_global.min
+                  ? schools.rank.isc_global.min
+                  : "-"
+              }}
+            </div>
             <div>ISC Rank</div>
           </div>
         </div>
@@ -50,7 +65,13 @@
             />
           </div>
           <div class="school-profile-text">
-            <div>100%</div>
+            <div>
+              {{
+                schools.stats.acceptance_rate
+                  ? schools.stats.acceptance_rate + "%"
+                  : "-"
+              }}
+            </div>
             <div>Acceptance Rate</div>
           </div>
         </div>
@@ -59,54 +80,64 @@
     </div>
   </div>
   <div class="bottom-section">
-    <div class="course-container">
-      <div class="course-details">
-        <span class="course-title">Plant Science - Turfgrass Management</span>
-        <div class="course-school">
-          <img
-            src="../../../assets/building-columns-solid.svg"
-            class="primary-icon"
-            alt="img"
-          />
-          <span>Ratcliffe Hicks School of Agriculture</span>
-        </div>
-        <div class="course-attributes">
-          <div>
+    <ng-container *ngFor="let course of schools.courses">
+      <div class="course-container">
+        <div class="course-details">
+          <span class="course-title">{{ course.name }}</span>
+          <div class="course-school">
             <img
-              src="../../../assets/graduation-cap-solid.svg"
+              src="../../../assets/building-columns-solid.svg"
               class="primary-icon"
-            />
-            <span class="course-attributes-title"> Associate </span>
-          </div>
-          <div>
-            <img
-              src="../../../assets/sack-dollar-solid.svg"
-              class="fees-icon"
-            />
-            <span class="course-attributes-title"> 10,350 USD </span>
-          </div>
-          <div>
-            <img
-              src="../../../assets/calender-primary.svg"
-              class="calender-icon"
-            />
-            <span class="course-attributes-title"> 2 years </span>
-          </div>
-        </div>
-      </div>
-      <div class="course-action">
-        <div class="course-action-buttons">
-          <button class="Add-to-favorits-btn">
-            <img
-              src="../../../assets/heart-regular.svg"
               alt="img"
-              class="primary-icon"
             />
-            <span> Add to Favorites </span>
-          </button>
-          <button class="apply-btn">Apply</button>
+            <span>{{ course.school_name }}</span>
+          </div>
+          <div class="course-attributes">
+            <div>
+              <img
+                src="../../../assets/graduation-cap-solid.svg"
+                class="primary-icon"
+              />
+              <span class="course-attributes-title">
+                {{ course.degree[0] ? course.degree[0] : "-" }}
+              </span>
+            </div>
+            <div>
+              <img
+                src="../../../assets/sack-dollar-solid.svg"
+                class="fees-icon"
+              />
+              <span class="course-attributes-title">
+                {{
+                  course.tuition.value
+                    ? course.tuition.value + " " + course.tuition.currency
+                    : "-"
+                }}
+              </span>
+            </div>
+            <div>
+              <img
+                src="../../../assets/calendar-days-solid.svg"
+                class="calender-icon"
+              />
+              <span class="course-attributes-title"> - </span>
+            </div>
+          </div>
+        </div>
+        <div class="course-action">
+          <div class="course-action-buttons">
+            <button class="Add-to-favorits-btn">
+              <img
+                src="../../../assets/heart-regular.svg"
+                alt="img"
+                class="primary-icon"
+              />
+              <span> Add to Favorites </span>
+            </button>
+            <button class="apply-btn">Apply</button>
+          </div>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 </div>
